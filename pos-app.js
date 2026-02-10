@@ -1,6 +1,12 @@
 var withOnions = 0;
 var withoutOnions = 0;
 var drinks = 0;
+let apiAddress = "127.0.0.1:5000"
+
+function fetchPrices() {
+  var pricesAPI = apiAddress + "/pricing-fetch"
+
+}
 
 function refreshCounters() {
   document.getElementById('with-onions-count').innerHTML = withOnions;
@@ -9,7 +15,7 @@ function refreshCounters() {
 }
 
 function incrCount() {
-    withOnions++;
-    refreshCounters();
-    
+  withOnions += 1;
+  refreshCounters();
+
 }
