@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> GSODA BBQ POS</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <div class="heading_row">
+        <h1>
+            GSODA BBQ POS SYSTEM
+        </h1>
+    </div>
+    <div class="heading_row">
+        <div class="content">
+            <h2>
+                BBQ POS APP
+            </h2>
+            <a href="/login/pos">
+                <button>Log in</button>
+            </a>
+        </div>
+        <div class="content">
+            <h2>
+                Admin Panel
+            </h2>
+            <a href="/login/admin">
+                <button>
+                    Log in
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

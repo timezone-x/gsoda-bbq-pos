@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Login</title>
+{% endblock %}
+
+{% block body %}
+
+<form class="contents" action="/login/pos" method="post">
+    <label for="name" style="text-align: left;">What is you name?</label><br>
+    <input type="text" name="name" id="name">
+    <label for="token" style="text-align: left;">Token</label><br>
+    <input type="text" name="token" id="token">
+    <input type="submit" value="Login">
+</form>
+
+{% endblock %}
