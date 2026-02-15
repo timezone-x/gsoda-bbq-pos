@@ -11,11 +11,12 @@ app = Flask(__name__)
 
 
 def loadPricing():
-
     db = sqlite3.connect('backend.db')
     cursor = db.cursor()
-    cursor.execute('SELECT * FROM items')
+    cursor.execute('SELECT * FROM itemPricing')
     pricing = cursor.fetchall()
+    print(pricing)
+    db.close()
 
 
 def loadTokens():
@@ -23,6 +24,7 @@ def loadTokens():
     cursor = db.cursor()
     cursor.execute('SELECT * FROM tokens')
     validTokens = cursor.fetchall()
+    db.close()
 
 
 @app.route("/")
@@ -44,5 +46,11 @@ def login(mode):
         return render_template("login.html")
 
 
+@app.route('/pos-app')
+def posApp():
+    items = loadPricing()
+    return render_template('pos-app.html', items=items)
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")

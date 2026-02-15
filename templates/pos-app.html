@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>POS App</title>
+{% endblock %}
+
+{% block body %}
+<div style="position: absolute; left: 0px;  width: 30%; height: 100%; background-color: rgb(199, 199, 199);">
+  <h1 style="padding-left: 1vw;">Cart</h1>
+  <table>
+    <tr>
+      <td>Sausages with Onion</td>
+      <td style="text-align: right;">$21.00</td>
+    </tr>
+    <tr>
+      <td colspan="2" style="padding: none;">$3.50 x6</td>
+    </tr>
+    <tr>
+      <td>Sausages with Onion</td>
+      <td style="text-align: right;">$21.00</td>
+    </tr>
+    <tr style="padding: none;">
+      <td colspan="2">$3.50 x6</td>
+    </tr>
+  </table>
+</div>
+<div style="position:absolute; width: 70%; height: 100%; right: 0px;">
+  <h1 style="padding-left: 1vw;">Items</h1>
+  <div class="item_grid">
+    {% for i in items %}
+    <button class="item_display">Snag With Onion</button>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
