@@ -6,12 +6,31 @@
 
 {% block body %}
 
-<form class="contents" action="/login/pos" method="post">
-    <label for="name" style="text-align: left;">What is you name?</label><br>
-    <input type="text" name="name" id="name">
-    <label for="token" style="text-align: left;">Token</label><br>
-    <input type="text" name="token" id="token">
-    <input type="submit" value="Login">
-</form>
+{% if mode == 'pos' %}
+<div style="justify-content: center;">
+    <h1> POS LOGIN</h1>
+    <form class="contents" action="/login/pos" method="post">
+        <label for="name" style="text-align: left;">What is you name?</label><br>
+        <input type="text" name="name" id="name">
+        <label for="token" style="text-align: left;">Token</label><br>
+        <input type="number" name="token" id="token">
+        <input type="submit" value="Login">
+    </form>
+    <h2><a href="/"><button>Return Home</button></a></h2>
+</div>
+{% elif mode == 'admin' %}
+<div style="justify-content: center;">
+    <h1> ADMIN PANEL LOGIN</h1><br>
+    <form class="contents" action="/login/admin" method="post">
+        <label for="token" style="text-align: left;">Token</label><br>
+        <input type="number" name="token" id="token">
+        <input type="submit" value="Login">
+    </form>
+    <h2><a href="/"><button>Return Home</button></a></h2>
+</div>
+{% else %}
+<h1>failed to correctly load login page: no mode selected</h1>
+<h2><a href="/"><button>Return Home</button></a></h2>
+{% endif %}
 
 {% endblock %}

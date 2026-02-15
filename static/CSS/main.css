@@ -3,6 +3,8 @@ body {
     display: flex;
     margin: auto;
     justify-content: center;
+    text-align: center;
+    font-family: Helvetica;
 }
 
 .heading_row {
@@ -53,12 +55,14 @@ label {
 }
 
 table,
+th,
 tr,
 td {
     border: 1px black solid;
     border-collapse: collapse;
-    padding: 1vw;
     justify-content: center;
+    padding-left: 1vw;
+    padding-right: 1vw;
     align-items: center;
     text-align: left;
     width: 100%;
@@ -73,7 +77,7 @@ td {
     justify-content: center;
     text-align: center;
     border: none;
-    font-size: 2vw;
+    font-size: 100%;
     transition-duration: 0.25s;
 }
 
@@ -86,4 +90,16 @@ td {
     align-items: center;
     column-gap: 20px;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+
+table.cart th tr td {
+    border: 1px black solid;
+    border-collapse: collapse;
+    justify-content: center;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    align-items: center;
+    text-align: left;
+    width: 100%;
 }

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Error: {{ app_error }}</title>
+{% endblock %}
+
+{% block body %}
+<div style="justify-content: center;">
+    <h1>Error: {{ app_error }}</h1>
+    Something went wrong loading this page! <br>
+    <button>
+        <a href="/">Return Home</a>
+    </button>
+</div>
+{% endblock %}

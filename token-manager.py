@@ -20,8 +20,10 @@ while True:
           3.  Delete Token.""")
     user_input = input("Action: ")
     if user_input == "1":
+        token = str(random.randint(0, 9))
+
         for i in range(10):
-            token = random.randint(0, 9)
+            token += str(random.randint(0, 9))
         perm_lvl = input(
             "What perm level do you want the token to hold? (1/2): ")
         print("""Expirery options:
@@ -35,16 +37,16 @@ while True:
 
         if exp_period == '1':
             exp_date = today + timedelta(1)
-            sql = 'INSERT INTO tokens (token, perm_level, expires) VALUES (%s, %s, %s)'
+            sql = 'INSERT INTO tokens (token, perm_level, expires) VALUES (?, ?, ?)'
             print(f"Expirery Date: {exp_period} - {exp_date}")
             vals = (token, perm_lvl, exp_date)
         elif exp_period == '2':
             exp_date = today + timedelta(7)
-            sql = 'INSERT INTO tokens (token, perm_level, expires) VALUES (%s, %s, %s)'
+            sql = 'INSERT INTO tokens (token, perm_level, expires) VALUES (?, ?, ?)'
             print(f"Expirery Date: {exp_period} - {exp_date}")
             vals = (token, perm_lvl, exp_date)
         else:
-            sql = 'INSERT INTO tokens (token, perm_level) VALUES (%s, %s)'
+            sql = 'INSERT INTO tokens (token, perm_level) VALUES (?, ?)'
             print(f"Expirery Date: NO-EXPIRERY")
             vals = (token, perm_lvl)
 

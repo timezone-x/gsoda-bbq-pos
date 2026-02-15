@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Admin Page</title>
+{% endblock %}
+
+{% block body %}
+<div>
+    Transactions: {{ transactionsCount }}
+    <a href="/" style="position: absolute; right: 0px;">
+        <button>
+            Return to homepage
+        </button>
+    </a>
+    <br>
+
+    <table>
+
+        <tr>
+            <th>Order #</th>
+            <th>datetime</th>
+            <th>snags With Onion</th>
+            <th>snags Without Onion</th>
+            <th>Drink Count</th>
+            <th>Other Items</th>
+            <th>Donation</th>
+            <th>User</th>
+            <th>Order Total</th>
+        </tr>
+        {% for sale in transactions %}
+        <tr>
+            <td>{{ sale[0] }}</td>
+            <td>{{ sale[1] }}</td>
+            <td>{{ sale[2] }}</td>
+            <td>{{ sale[3] }}</td>
+            <td>{{ sale[4]+sale[5]+sale[6]+sale[7]+sale[8] }}</td>
+            <td>{{ sale[9]}}</td>
+            <td>{{ sale[10]}}</td>
+            <td>{{ sale[12]}}</td>
+            <td>{{ sale[11]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
