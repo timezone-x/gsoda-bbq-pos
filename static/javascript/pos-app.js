@@ -1,4 +1,4 @@
-const items = {{ items | tojson }}
+const itemPricing = {{ items | tojson }};
 
 var cart = [['snag', 3.5, 1], ['drink', 2, 1]];
 
@@ -12,10 +12,12 @@ function updateCart() {
             '</td></tr><tr><td colspan="2">' + cart[i][1] + '  x' + cart[i][2] + '</td></tr>'
     }
     document.getElementById("cart").innerHTML = html
-    document.getElementById("totalDisplay").textContent = '$' + orderTotal
+    document.getElementById("totalDisplay").textContent = 'Total: $' + orderTotal
 
 }
 
 function addToCart() {
+    const id = event.target.id;
+    document.getElementById('test').textContent = id;
 
 }

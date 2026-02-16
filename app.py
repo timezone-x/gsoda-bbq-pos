@@ -1,14 +1,14 @@
 import sqlite3
-from tkinter.messagebox import RETRY
-from flask import Flask, render_template, request, url_for, redirect, session
+from flask import Flask, jsonify, render_template, request, url_for, redirect, session
 
 
 app = Flask(__name__)
-app.secret_key = "super_random_string_here"
+app.secret_key = "8dee4e112d63655ddfd1b4956bd038181175cdea36ea7bc30a484c47a1247013"
 
 
 def loadPricing():
     with sqlite3.connect('backend.db') as db:
+        db.row_factory = sqlite3.Row
         cursor = db.cursor()
         cursor.execute('SELECT * FROM itemPricing')
         pricing = cursor.fetchall()
@@ -96,6 +96,11 @@ def page_not_found(error):
 @app.route('/error/<posapp_error>')
 def error_page(posapp_error):
     return render_template("error.html", app_error=posapp_error)
+
+
+@app.route('/api/items')
+def getItems():
+    return jsonify(loadPricing())
 
 
 if __name__ == "__main__":

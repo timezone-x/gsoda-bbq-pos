@@ -6,7 +6,7 @@
 {% endblock %}
 {% block body %}
 <div style="position: absolute; left: 0px;  width: 30%; height: 100%; background-color: rgb(199, 199, 199);">
-  <h1 style="padding-left: 1vw;">Order</h1>
+  <h1 style="padding-left: 1vw;" id="test">Order</h1>
   <h2 id="totalDisplay">Total:</h2>
   <button onclick="updateCart();">Update Cart</button>
   <table id="cart" class="cart">
@@ -20,7 +20,7 @@
     </a></h1>
   <div class="item_grid">
     {% for i in items %}
-    <button class="item_display">{{ i[1] }}<br>${{ i[2] }}</button>
+    <button class="item_display" onclick="addToCart();" id="{{ i[1] }}">{{ i[1] }}<br>${{ i[2] }}</button>
     {% endfor %}
   </div>
 </div>
