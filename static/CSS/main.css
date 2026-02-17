@@ -79,11 +79,10 @@ td {
     text-align: center;
     border: none;
     font-size: 100%;
-    transition-duration: 0.25s;
 }
 
-.item_display:hover {
-    background-color: #02214d;
+.item_display:focus {
+    background: #004ebc;
 }
 
 .item_grid {

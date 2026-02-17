@@ -8,16 +8,22 @@
 <div style="position: absolute; left: 0px;  width: 30%; height: 100%; background-color: rgb(199, 199, 199);">
   <h1 style="padding-left: 1vw;" id="test">Order</h1>
   <h2 id="totalDisplay">Total:</h2>
-  <button onclick="updateCart();">Update Cart</button>
+  <button onclick="clearCart();">Clear Cart</button>
   <table id="cart" class="cart">
   </table>
+  <div
+    style=" font-size: 2vw; width: 100%; height: 5vw; display: flex; justify-content: center; align-items: center; background-color: #00265a; position: absolute; bottom: 0px; color: white">
+    Checkout
+  </div>
 </div>
 <div style="position:absolute; width: 70%; height: 100%; right: 0px;">
-  <h1 style="padding-left: 1vw;">Items<a href="/" style="position: absolute; right: 0px;">
+  <h1 style="padding-left: 1vw;">Items<a href="/app" style="position: absolute; right: 0px;">
       <button>
         Return to homepage
       </button>
-    </a></h1>
+    </a>
+    <button onclick="loadPricing();">load pricing</button>
+  </h1>
   <div class="item_grid">
     {% for i in items %}
     <button class="item_display" onclick="addToCart();" id="{{ i[1] }}">{{ i[1] }}<br>${{ i[2] }}</button>

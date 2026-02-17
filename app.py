@@ -8,7 +8,6 @@ app.secret_key = "8dee4e112d63655ddfd1b4956bd038181175cdea36ea7bc30a484c47a12470
 
 def loadPricing():
     with sqlite3.connect('backend.db') as db:
-        db.row_factory = sqlite3.Row
         cursor = db.cursor()
         cursor.execute('SELECT * FROM itemPricing')
         pricing = cursor.fetchall()
@@ -57,17 +56,20 @@ def login(mode):
         token = request.form.get('token')
         print(f"token: {token}")
         if mode == 'pos':
-
             if checkToken(token, 1):
                 session['user'] = name
                 session['session'] = True
                 session['perm_lvl'] = checkToken(token, 1)[1]
-                return redirect('/pos-app')
+                return redirect('/app/pos')
             else:
                 return redirect('/error/failed-login-invalid-token')
         elif mode == 'admin':
             if checkToken(token, 2):
-                return redirect('/admin')
+                session['user'] = name
+                session['session'] = True
+                session['perm_lvl'] = '2'
+
+                return redirect('/app/admin')
             else:
                 return redirect('/error/failed-login-invalid-or-wrong-perms-token')
 
@@ -75,13 +77,27 @@ def login(mode):
         return render_template("login.html", mode=mode)
 
 
-@app.route('/pos-app')
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')
+
+
+@app.route('/app')
+def homepage():
+    if session.get('session'):
+        return render_template('app.html')
+    else:
+        return "Access Denied", 403
+
+
+@app.route('/app/pos')
 def posApp():
     items = loadPricing()
     return render_template('pos-app.html', items=items)
 
 
-@app.route('/admin')
+@app.route('/app/admin')
 def adminPage():
     transactionsCount = loadTransactions()[0]
     transactions = loadTransactions()[1]
@@ -100,7 +116,14 @@ def error_page(posapp_error):
 
 @app.route('/api/items')
 def getItems():
-    return jsonify(loadPricing())
+    with sqlite3.connect('backend.db') as db:
+        db.row_factory = sqlite3.Row
+        cursor = db.cursor()
+
+        cursor.execute('SELECT * FROM itemPricing')
+        rows = cursor.fetchall()
+        items = [dict(row) for row in rows]
+    return jsonify(items)
 
 
 if __name__ == "__main__":

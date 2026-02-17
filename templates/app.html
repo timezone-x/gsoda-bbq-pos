@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Homepage</title>
+{% endblock %}
+
+{% block body %}
+<div style="position: absolute; right: 0px; top: 0px; padding: 0.1vw;">
+    {{ session.get('user') }} <a href="/logout">Logout<i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i></a>
+</div>
+{% endblock %}
